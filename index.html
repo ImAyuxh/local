@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Company Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- For Icons -->
+  <style>
+    /* Add this style for white icons */
+    .fas {
+      color: white;
+    }
+
+    /* Set the background image for the body */
+    body {
+      background-image: url('hero.png'); /* Path to your image */
+      background-size: cover; /* Cover the entire background */
+      color: white; /* Ensure text is visible */
+      margin: 0; /* Remove default margin */
+      font-family: Arial, sans-serif; /* Set a default font */
+    }
+
+    header {
+      background-color: rgba(0, 0, 0, 0.7); /* Dark transparent header */
+      padding: 10px; /* Add padding to header */
+      display: flex; /* Use flexbox for layout */
+      justify-content: space-between; /* Space between sections */
+      align-items: center; /* Center items vertically */
+    }
+
+    nav {
+      display: flex; /* Use flexbox for navigation */
+      gap: 15px; /* Space between nav items */
+    }
+
+    nav a,
+    button {
+      color: white; /* Ensure links and buttons have white text */
+      background: none; /* No background for links */
+      border: none; /* Remove border from buttons */
+      cursor: pointer; /* Change cursor to pointer */
+    }
+
+    nav a:hover,
+    button:hover {
+      text-decoration: underline; /* Underline on hover */
+    }
+
+    .button-group {
+      margin-top: 20px; /* Space above button group */
+    }
+
+    .button-center {
+      display: flex; /* Use flexbox for centering */
+      justify-content: center; /* Center content */
+      margin-top: 20px; /* Space above */
+    }
+
+    .dashboard {
+      padding: 20px; /* Padding for dashboards */
+      background-color: rgba(0, 0, 0, 0.7); /* Dark transparent background for content */
+      border-radius: 10px; /* Rounded corners */
+      max-width: 600px; /* Limit width */
+      margin: 20px auto; /* Center dashboard */
+    }
+
+    h1, h2, h3 {
+      color: white; /* Ensure headings are white */
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="left-section" style="display: flex; align-items: center;">
+    <img src="logo.png" alt="Local Logo" style="height: 50px;"> <!-- Adjust logo size -->
+    <h1>Local</h1>
+  </div>
+  <nav class="right-section">
+    <a href="javascript:void(0)" onclick="goHome()"><i class="fas fa-home"></i> Home</a>
+    <a href="javascript:void(0)" onclick="contactUs()"><i class="fas fa-envelope"></i> Contact Us</a>
+    <button onclick="logout()" id="logoutButton"><i class="fas fa-sign-out-alt"></i> Logout</button>
+  </nav>
+</header>
+
+<div id="content">
+  <!-- Home Screen -->
+  <div id="homeScreen">
+    <h1>Who are you?</h1>
+    <div class="button-group">
+      <button onclick="loadLogin('admin')"><i class="fas fa-user-shield"></i> Admin</button>
+      <button onclick="loadLogin('employee')"><i class="fas fa-user"></i> Employee</button>
+    </div>
+  </div>
+
+  <!-- Login Screen -->
+  <div id="loginScreen" style="display:none;">
+    <h1 id="loginTitle">Login</h1>
+    <input type="text" id="username" placeholder="Username"><br>
+    <input type="password" id="password" placeholder="Password"><br>
+    <div class="button-center">
+      <button onclick="submitLogin()"><i class="fas fa-sign-in-alt"></i> Submit</button>
+    </div>
+  </div>
+
+  <!-- Admin Dashboard -->
+  <div id="adminDashboard" class="dashboard" style="display:none;">
+    <h2>Admin Dashboard</h2>
+    <h3>Assign Tasks</h3>
+    <input type="text" id="taskDescription" placeholder="Task description">
+    <input type="date" id="dueDate">
+    <button onclick="assignTask()"><i class="fas fa-plus"></i> Assign Task</button>
+    <h3>Assigned Tasks</h3>
+    <ul id="adminTaskList"></ul>
+    <h3>Deleted Tasks</h3>
+    <div id="taskBinSection" style="display:none;">
+      <ul id="taskBin"></ul>
+      <button onclick="clearDeletedTasks()"><i class="fas fa-trash"></i> Delete All Permanently</button>
+      <button onclick="clearDeletedTaskManually()"><i class="fas fa-trash-alt"></i> Delete Selected Task</button> <!-- New button for manual deletion -->
+    </div>
+  </div>
+
+  <!-- Employee Dashboard -->
+  <div id="employeeDashboard" class="dashboard" style="display:none;">
+    <h2>Employee Dashboard</h2>
+    <h3>Assigned Tasks</h3>
+    <ul id="employeeTaskList"></ul>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
